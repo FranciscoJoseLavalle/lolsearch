@@ -1,0 +1,10 @@
+.history {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.history>div {
+    display: flex;
+    flex-direction: column;
+}

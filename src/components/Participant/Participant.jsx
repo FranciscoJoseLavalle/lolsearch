@@ -1,32 +1,31 @@
+import { useEffect } from 'react';
+import Item from '../Item/Item';
 import './Participant.css';
 
 const Participant = ({ participant, userName }) => {
+    let items = [participant.item0, participant.item1, participant.item2, participant.item3, participant.item4, participant.item5, participant.item6]
     return (
         <div className='participant' style={{
-            backgroundColor: participant.win ? '#44a' : '#a44'
+            backgroundColor: participant.summonerName.toLowerCase() == userName.toLowerCase() ? participant.win ? '#66c' : '#c66' : participant.win ? '#44a' : '#a44',
+
         }}>
-            <p>
-                {
-                    participant.summonerName.toLowerCase() == userName.toLowerCase()
-                        ? <b>{participant.summonerName}</b>
-                        : <>{participant.summonerName}</>
-                }
-            </p>
-            <small>Nivel: {participant.summonerLevel}</small>
-            <p>{participant.championName}</p>
-            <p>{participant.champLevel}</p>
-            <p>{`${participant.kills}/${participant.deaths}/${participant.assists}`}</p>
-            <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`} alt="Champion" width={45} height={45} />
-            <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/spell/SummonerFlash.png`} alt="Champion" width={45} height={45} />
-            <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/spell/SummonerFlash.png`} alt="Champion" width={45} height={45} />
+            <div>
+                <div className='participant__champ'>
+                    <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName === "FiddleSticks" ? "Fiddlesticks" : participant.championName}.png`} alt={participant.championName} width={45} height={45} />
+                    <p>{participant.champLevel}</p>
+                </div>
+                <div className="participant__spells">
+                    <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/spell/SummonerFlash.png`} alt="Champion" width={25} height={25} />
+                    <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/spell/SummonerTeleport.png`} alt="Champion" width={25} height={25} />
+                </div>
+                <div className='participant__summoner'>
+                    <p>{participant.summonerName}</p>
+                    <small>Nivel {participant.summonerLevel}</small>
+                </div>
+                <p>{`${participant.kills}/${participant.deaths}/${participant.assists}`}</p>
+            </div>
             <div className='participant__items'>
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`} alt="item" width={45} height={45} />
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`} alt="item" width={45} height={45} />
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`} alt="item" width={45} height={45} />
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`} alt="item" width={45} height={45} />
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`} alt="item" width={45} height={45} />
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`} alt="item" width={45} height={45} />
-                <img src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item6}.png`} alt="item" width={45} height={45} />
+                {items.map(item => item !== 0 && <Item itemName={item} />)}
             </div>
         </div>
     )

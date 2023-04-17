@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
+import Header from './components/Header/Header';
 import History from './components/History/History';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         console.log(res.data)
         setUser(res.data);
         findMatches(res.data.puuid);
+        document.title = `${res.data.name}`;
       })
   }
   function findMatches(puuid) {
@@ -40,10 +42,7 @@ function App() {
 
   return (
     <div>
-      <form onSubmit={searchUser}>
-        <input type="text" onChange={(e) => setUserName(e.target.value)} />
-        <button>Buscar</button>
-      </form>
+      <Header setUserName={setUserName} searchUser={searchUser} />
       {
         user?.name &&
         <div>

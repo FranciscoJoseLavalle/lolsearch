@@ -1,8 +1,64 @@
 .participant {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.participant>div {
+    display: flex;
     align-items: center;
     gap: .5rem;
+    padding: .5rem;
 }
-.participant img {
+
+.participant__champ {
+    position: relative;
+}
+
+.participant__champ img {
     border-radius: 50%;
+}
+
+.participant__champ p {
+    position: absolute;
+    bottom: 0;
+    background-color: #111a;
+    color: #eee;
+    font-size: .9rem;
+    padding: .1rem;
+    border-radius: 50%;
+    width: 1.3rem;
+    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant__spells {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant__items {
+    display: flex;
+    gap: .25rem;
+}
+
+.participant__items img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: .5rem;
+}
+
+.participant__summoner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+@media (max-width: 600px) {
+    .participant {
+        flex-direction: column;
+    }
 }
