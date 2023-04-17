@@ -1,0 +1,11 @@
+.history {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.history>div {
+    display: flex;
+    flex-direction: column;
+    border: #555 solid .2rem;
+}
