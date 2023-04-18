@@ -2,7 +2,8 @@
     display: flex;
     gap: .5rem;
     padding: 1.5rem;
-    background-color: #334;
+    /* background-color: #334; */
+    background: linear-gradient(145deg, #334, #223);
     color: #ddd;
     border-radius: .3rem;
     max-width: 70rem;
@@ -11,12 +12,14 @@
     margin-bottom: 1rem;
     box-shadow: #000a 0 0 5px;
 }
+
 .user p {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .5rem;
 }
+
 .user img {
     border-radius: .3rem;
 }

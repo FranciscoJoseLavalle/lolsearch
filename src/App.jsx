@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import './App.css'
+import Footer from './components/Footer/Footer';
 import FreeChamps from './components/FreeChamps/FreeChamps';
 import Header from './components/Header/Header';
 import History from './components/History/History';
@@ -37,24 +38,28 @@ function App() {
     return (
       <>
         <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} />
-        <FreeChamps api_key={api_key} />
-        {secondLoading ? <Loader /> : user.error ? <p style={{
-          textAlign: "center"
-        }}>{user.error}</p> : <p style={{
-          textAlign: "center"
-        }}>Aún no has buscado a ningún invocador...</p>}
-
+        <main>
+          <FreeChamps api_key={api_key} />
+          {secondLoading ? <Loader /> : user.error ? <p style={{
+            textAlign: "center"
+          }}>{user.error}</p> : <p style={{
+            textAlign: "center"
+          }}>Aún no has buscado a ningún invocador...</p>}
+        </main>
+        <Footer />
       </>
     )
   }
   return (
-    <div>
+    <>
       <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} />
-      <FreeChamps api_key={api_key} />
-      <User user={user} api_key={api_key} />
-      {loading ? <Loader /> : <History history={history} user={user} findMatches={findMatches} setLoading={setLoading} />}
-
-    </div>
+      <main>
+        <FreeChamps api_key={api_key} />
+        <User user={user} api_key={api_key} />
+        {loading ? <Loader /> : <History history={history} user={user} findMatches={findMatches} setLoading={setLoading} />}
+      </main>
+      <Footer />
+    </>
   )
 }
 
