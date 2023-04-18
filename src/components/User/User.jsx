@@ -4,6 +4,7 @@ import './User.css';
 import Loader from '../Loader/Loader';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import LeagueIcon from '../LeagueIcon/LeagueIcon';
 
 const User = ({ user, api_key }) => {
     const [userLeagues, setUserLeagues] = useState([])
@@ -34,8 +35,10 @@ const User = ({ user, api_key }) => {
                         <div>
                             <h3>{user.name}</h3>
                             {userLeagues[0]?.rank
-                                && <><p>{`${userLeagues[0]?.tier} ${userLeagues[0]?.rank}`}</p>
-                                    <small>{`${userLeagues[0]?.wins}W ${userLeagues[0]?.losses}L ${(userLeagues[0]?.wins / (userLeagues[0]?.wins + userLeagues[0]?.losses) * 100).toFixed(2)}% winrate`}</small></>
+                                && <>
+                                    <p><LeagueIcon league={userLeagues[0].tier} />{`${userLeagues[0].tier} ${userLeagues[0].rank} ${userLeagues[0].leaguePoints} PL`}</p>
+                                    <small>{`${userLeagues[0]?.wins}W ${userLeagues[0]?.losses}L ${(userLeagues[0]?.wins / (userLeagues[0]?.wins + userLeagues[0]?.losses) * 100).toFixed(2)}% winrate`}</small>
+                                </>
                             }
 
                             <small>Nivel {user.summonerLevel}</small>

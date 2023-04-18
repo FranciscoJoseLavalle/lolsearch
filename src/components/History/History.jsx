@@ -35,6 +35,9 @@ const History = ({ history, user, findMatches, setLoading }) => {
                                 && "Abismo de los Lamentos 5v5"}
                         </p>
                         <small>{moment(el.info.gameEndTimestamp).fromNow()}</small>
+                        <small>
+                            {Math.trunc((el.info.gameDuration / 60))} minutos {el.info.gameDuration % 60} segundos
+                        </small>
                     </div>
                     {
                         el.info.participants.map((participant, i) => <Participant key={i} participant={participant} user={user} summonersID={summonersID} />)

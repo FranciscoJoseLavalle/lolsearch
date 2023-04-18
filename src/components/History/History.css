@@ -30,6 +30,9 @@
 
 .history__gameinfo {
     padding-bottom: .25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
 }
 
 @media (max-width: 370px) {
