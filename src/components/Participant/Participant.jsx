@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import Item from '../Item/Item';
 import './Participant.css';
 
-const Participant = ({ participant, userName }) => {
+const Participant = ({ participant, user }) => {
     let items = [participant.item0, participant.item1, participant.item2, participant.item3, participant.item4, participant.item5, participant.item6]
     return (
         <div className='participant' style={{
-            backgroundColor: participant.summonerName.toLowerCase() == userName.toLowerCase() ? participant.win ? '#66c' : '#c66' : participant.win ? '#44a' : '#a44',
+            backgroundColor: participant.summonerName.toLowerCase() == user.name.toLowerCase() ? participant.win ? '#66c' : '#c66' : participant.win ? '#44a' : '#a44',
 
         }}>
             <div>
@@ -25,7 +25,7 @@ const Participant = ({ participant, userName }) => {
                 <p>{`${participant.kills}/${participant.deaths}/${participant.assists}`}</p>
             </div>
             <div className='participant__items'>
-                {items.map(item => item !== 0 && <Item itemName={item} />)}
+                {items.map((item, i) => item !== 0 && <Item key={i} itemName={item} />)}
             </div>
         </div>
     )

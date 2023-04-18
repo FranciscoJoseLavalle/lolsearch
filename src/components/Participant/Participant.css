@@ -1,6 +1,9 @@
 .participant {
     display: flex;
     flex-wrap: wrap;
+    border: solid #fff2 .1rem;
+    border-right: none;
+    border-left: none;
 }
 
 .participant>div {
@@ -57,8 +60,12 @@
     align-items: flex-start;
     justify-content: center;
 }
+
 @media (max-width: 600px) {
     .participant {
         flex-direction: column;
+    }
+    .participant >div{
+        padding: .15rem .5rem;
     }
 }

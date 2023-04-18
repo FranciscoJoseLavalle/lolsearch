@@ -1,0 +1,22 @@
+.user {
+    display: flex;
+    gap: .5rem;
+    padding: 1.5rem;
+    background-color: #334;
+    color: #ddd;
+    border-radius: .3rem;
+    max-width: 70rem;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 1rem;
+    box-shadow: #000a 0 0 5px;
+}
+
+.user img {
+    border-radius: .3rem;
+}
+
+.user>div {
+    display: flex;
+    flex-direction: column;
+}

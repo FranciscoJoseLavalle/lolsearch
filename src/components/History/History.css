@@ -2,9 +2,36 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    max-width: 70rem;
+    width: 95%;
+    margin: auto;
 }
 
 .history>div {
     display: flex;
     flex-direction: column;
+    /* border-radius: 5rem; */
+    background-color: #334;
+    color: #ddd;
+    padding: .5rem;
+    border-radius: .3rem;
+    box-shadow: #000a 0 0 5px;
+}
+
+.history__gameinfo {
+    padding-bottom: .25rem;
+}
+
+@media (max-width: 370px) {
+    .history {
+        width: 100%;
+    }
+
+    .history>div {
+        padding: 0;
+    }
+
+    .history__gameinfo {
+        padding: .5rem;
+    }
 }

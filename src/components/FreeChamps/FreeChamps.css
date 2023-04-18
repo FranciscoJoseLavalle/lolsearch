@@ -1,0 +1,16 @@
+.free {
+    max-width: 70rem;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 1.5rem;
+}
+
+.freechamps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.freechamps img {
+    border-radius: 50%;
+}
