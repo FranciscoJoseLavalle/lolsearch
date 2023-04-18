@@ -3,6 +3,10 @@
     width: 95%;
     margin: auto;
     margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    color: #ddd;
 }
 
 .freechamps {
@@ -12,5 +16,6 @@
 }
 
 .freechamps img {
-    border-radius: 50%;
+    border-radius: .3rem;
+    box-shadow: #000a 0 0 5px;
 }

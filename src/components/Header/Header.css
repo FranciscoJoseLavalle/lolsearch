@@ -46,6 +46,10 @@
     color: #eee;
     text-transform: uppercase;
     font-weight: 600;
+    transition: .2s;
+}
+.header__nav-form button:hover {
+    background-color: #445;
 }
 
 @media (max-width: 500px) {

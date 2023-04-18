@@ -7,6 +7,16 @@
     margin: auto;
 }
 
+.history select {
+    padding: .5rem;
+    border-radius: .3rem;
+    outline: none;
+    border: none;
+    background-color: #334;
+    color: #eee;
+    margin-bottom: -1rem;
+}
+
 .history>div {
     display: flex;
     flex-direction: column;

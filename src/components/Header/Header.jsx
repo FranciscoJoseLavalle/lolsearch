@@ -2,17 +2,21 @@ import axios from 'axios';
 import { useState } from 'react';
 import './Header.css'
 
-const Header = ({ api_key, api_url, setUser, findMatches, setSecondLoading }) => {
+const Header = ({ api_key, api_url, setUser, findMatches, setSecondLoading, setLoading }) => {
     const [userName, setUserName] = useState('');
     function searchUser(e) {
         e.preventDefault();
         setSecondLoading(true);
         axios.get(`${api_url}${userName}?api_key=${api_key}`)
             .then(res => {
-                console.log(res.data)
                 setUser(res.data);
                 findMatches(res.data.puuid);
-                document.title = `${res.data.name}`;
+                document.title = `${res.data.name} | LoLSearcher`;
+            })
+            .catch(err => {
+                setUser({ error: "Usuario no encontrado" })
+                setLoading(false);
+                setSecondLoading(false);
             })
     }
     return (

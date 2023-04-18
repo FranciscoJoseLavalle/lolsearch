@@ -12,15 +12,13 @@ function App() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [secondLoading, setSecondLoading] = useState(false);
-  const api_key = "RGAPI-6c675f8e-d783-4cb0-a82c-ca0a26fb89b7"
+  const api_key = "RGAPI-3d0df508-be78-4dcc-8701-d3f8c9cd6270"
   const api_url = "https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/"
-  const api_matches = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid//ids?start=0&count=20"
 
-  function findMatches(puuid) {
+  function findMatches(puuid, number = 10) {
     setHistory([]);
-    axios.get(`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10&api_key=${api_key}`)
+    axios.get(`https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=${number}&api_key=${api_key}`)
       .then(res => {
-        console.log(res.data)
         res.data.forEach(el => {
           findSingleMatch(el)
         })
@@ -30,7 +28,6 @@ function App() {
     setLoading(false);
     axios.get(`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=${api_key}`)
       .then(res => {
-        console.log(res.data)
         setHistory(el => [...el, res.data])
         setLoading(false);
         setSecondLoading(false);
@@ -39,19 +36,23 @@ function App() {
   if (!user?.name) {
     return (
       <>
-        <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} />
+        <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} />
         <FreeChamps api_key={api_key} />
-        {secondLoading ? <Loader /> : <p>Aún no has buscado a ningún invocador...</p>}
+        {secondLoading ? <Loader /> : user.error ? <p style={{
+          textAlign: "center"
+        }}>{user.error}</p> : <p style={{
+          textAlign: "center"
+        }}>Aún no has buscado a ningún invocador...</p>}
 
       </>
     )
   }
   return (
     <div>
-      <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} />
+      <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} />
       <FreeChamps api_key={api_key} />
       <User user={user} api_key={api_key} />
-      {loading ? <Loader /> : <History history={history} user={user} />}
+      {loading ? <Loader /> : <History history={history} user={user} findMatches={findMatches} setLoading={setLoading} />}
 
     </div>
   )
