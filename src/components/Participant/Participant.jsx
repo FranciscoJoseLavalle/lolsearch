@@ -7,6 +7,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 const Participant = ({ participant, user, summonersID }) => {
     let items = [participant.item0, participant.item1, participant.item2, participant.item3, participant.item4, participant.item5, participant.item6]
     const [summoners, setSummoners] = useState([]);
+
     useEffect(() => {
         let array = [];
         summonersID.forEach(el => {
@@ -19,7 +20,6 @@ const Participant = ({ participant, user, summonersID }) => {
             setSummoners(array);
         })
     }, [])
-
     return (
         <div className='participant' style={{
             backgroundColor: participant.summonerName.toLowerCase() == user.name.toLowerCase() ? participant.win ? '#66c' : '#c66' : participant.win ? '#44a' : '#a44',
