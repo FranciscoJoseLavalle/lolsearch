@@ -13,7 +13,7 @@ function App() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [secondLoading, setSecondLoading] = useState(false);
-  const api_key = "RGAPI-3d0df508-be78-4dcc-8701-d3f8c9cd6270"
+  const api_key = "RGAPI-aabe0c96-2d8e-47ba-9237-b18798cb5335"
   const api_url = "https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/"
 
   function findMatches(puuid, number = 10) {
