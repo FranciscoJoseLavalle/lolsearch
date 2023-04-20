@@ -2,7 +2,8 @@
     display: flex;
     gap: .5rem;
     padding: 1.5rem;
-    /* background-color: #334; */
+    flex-direction: column;
+    align-items: flex-start;
     background: linear-gradient(145deg, #334, #223);
     color: #ddd;
     border-radius: .3rem;
@@ -26,5 +27,25 @@
 
 .user>div {
     display: flex;
+    gap: .5rem;
+}
+
+.user__info>div {
+    display: flex;
     flex-direction: column;
+    gap: .25rem;
+}
+
+.user__info-watch {
+    background-color: #779;
+    padding: .5rem;
+    border: none;
+    border-radius:.3rem;
+    color: #ddd;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.user__leagues {
+    display: flex;
 }
