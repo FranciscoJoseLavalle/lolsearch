@@ -19,7 +19,7 @@ const Participant = ({ participant, user, summonersID }) => {
             }
             setSummoners(array);
         })
-    }, [])
+    }, [summonersID])
     return (
         <div className='participant' style={{
             backgroundColor: participant.summonerName.toLowerCase() == user.name.toLowerCase() ? participant.win ? '#66c' : '#c66' : participant.win ? '#44a' : '#a44',

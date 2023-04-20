@@ -1,13 +1,10 @@
 import './History.css';
-import Participant from '../Participant/Participant'
-import moment from 'moment';
 import summoners from '../../utilities/summoners.json';
 import { useEffect, useState } from 'react';
 import HistoryMatch from '../HistoryMatch/HistoryMatch';
 
 const History = ({ history, user, findMatches, setLoading }) => {
     const [summonersID, setSummonersID] = useState([])
-    const [showSummoners, setShowSummoners] = useState(false);
     let summonersArray = Object.entries(summoners.data);
     useEffect(() => {
         setSummonersID([]);

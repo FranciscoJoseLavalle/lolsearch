@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import './ActualGame.css';
+import summoners from '../../utilities/summoners.json';
 import champs from '../../utilities/champs.json';
-import "react-lazy-load-image-component/src/effects/blur.css";
+import ActualGameParticipant from '../ActualGameParticipant/ActualGameParticipant';
 
 const ActualGame = ({ matchInfo }) => {
     const [champsID, setChampsID] = useState([])
     let champsArray = Object.entries(champs.data);
+
+    const [summonersID, setSummonersID] = useState([])
+    let summonersArray = Object.entries(summoners.data);
+
     useEffect(() => {
         setChampsID([]);
         champsArray.forEach(el => {
@@ -18,33 +23,20 @@ const ActualGame = ({ matchInfo }) => {
                 }
             })
         })
+
+        setSummonersID([]);
+        summonersArray.forEach(el => {
+            setSummonersID(test => [...test, { id: el[1].id, key: el[1].key }])
+        })
     }, [])
+
     return (
-        <div>
+        <div className='actualgame'>
             {matchInfo.gameMode === 'ARAM' && <p>Abismo de los lamentos 5v5</p>}
             {matchInfo.gameMode === 'CLASSIC' && <p>Grieta del Invocador 5v5</p>}
-            {matchInfo.participants.map((participant, i) => (
-                <div key={i}>
-                    <LazyLoadImage
-                        src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/${participant.profileIconId}.png`}
-                        alt={`${participant.summonerName} icon`}
-                        effect="blur"
-                        width={35}
-                        height={35}
-                    />
-                    {champsID.map(champ => (
-                        champ.key == participant.championId
-                        && <LazyLoadImage
-                            src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${champ.name}.png`}
-                            alt={champ.name}
-                            effect="blur"
-                            width={35}
-                            height={35}
-                        />
-                    ))}
-                    {participant.summonerName}
-                </div>
-            ))}
+            <div className='actualgame__container'>
+                {matchInfo.participants.map((participant, i) => <ActualGameParticipant key={i} summonersID={summonersID} participant={participant} champsID={champsID} />)}
+            </div>
         </div>
     )
 }

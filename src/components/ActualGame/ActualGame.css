@@ -1,0 +1,11 @@
+.actualgame {
+    max-width: 70rem;
+    width: 95%;
+    margin: auto;
+}
+
+.actualgame__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}

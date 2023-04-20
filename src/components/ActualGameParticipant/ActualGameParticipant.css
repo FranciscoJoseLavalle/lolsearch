@@ -1,0 +1,17 @@
+.actualgame__participant {
+    /* background: linear-gradient(145deg, #334, #223); */
+    color: #eee;
+    display: flex;
+    gap: .5rem;
+    padding: .5rem;
+    border-radius: .3rem;
+    box-shadow: #000a 0 0 5px;
+}
+
+.actualgame__participant-champ {
+    border-radius: 50%;
+}
+
+.actualgame__participant-spells {
+    display: flex;
+}
