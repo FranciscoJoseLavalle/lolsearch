@@ -17,7 +17,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [matchInfo, setMatchInfo] = useState({});
   const [watchHistory, setWatchHistory] = useState(true);
-  const api_key = "RGAPI-aabe0c96-2d8e-47ba-9237-b18798cb5335"
+  const api_key = "RGAPI-a8723520-8603-4ca2-922b-4941d0dd0d79"
   const api_url = "https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/"
 
   function findMatches(puuid, number = 10) {
