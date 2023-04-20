@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import LeagueIcon from '../LeagueIcon/LeagueIcon';
 
-const User = ({ user, api_key }) => {
+const User = ({ user, api_key, isPlaying, setWatchHistory, watchHistory }) => {
     const [userLeagues, setUserLeagues] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -42,7 +42,7 @@ const User = ({ user, api_key }) => {
                             }
 
                             <small>Nivel {user.summonerLevel}</small>
-
+                            {isPlaying && <button onClick={() => setWatchHistory(!watchHistory)}>Ver partida actual</button>}
                         </div>
                     </div>
             }

@@ -25,7 +25,7 @@ const HistoryMatch = ({ el, user, summonersID }) => {
                 el.info.participants.map((participant, i) => (
                     showSummoners
                         ? <Participant key={i} participant={participant} user={user} summonersID={summonersID} />
-                        : <div onClick={() => setShowSummoners(true)}>
+                        : <div key={i} onClick={() => setShowSummoners(true)}>
                             {
                                 participant.summonerName === user.name
                                 && <Participant key={i} participant={participant} user={user} summonersID={summonersID} />

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import './Header.css'
 
-const Header = ({ api_key, api_url, setUser, findMatches, setSecondLoading, setLoading }) => {
+const Header = ({ api_key, api_url, setUser, findMatches, setSecondLoading, setLoading, findActualGame }) => {
     const [userName, setUserName] = useState('');
     function searchUser(e) {
         e.preventDefault();
@@ -11,6 +11,8 @@ const Header = ({ api_key, api_url, setUser, findMatches, setSecondLoading, setL
             .then(res => {
                 setUser(res.data);
                 findMatches(res.data.puuid);
+                findActualGame(res.data.id);
+                console.log(res.data);
                 document.title = `${res.data.name} | LoLSearcher`;
             })
             .catch(err => {

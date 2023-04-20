@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import './App.css'
+import ActualGame from './components/ActualGame/ActualGame';
 import Footer from './components/Footer/Footer';
 import FreeChamps from './components/FreeChamps/FreeChamps';
 import Header from './components/Header/Header';
@@ -13,6 +14,9 @@ function App() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [secondLoading, setSecondLoading] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [matchInfo, setMatchInfo] = useState({});
+  const [watchHistory, setWatchHistory] = useState(true);
   const api_key = "RGAPI-aabe0c96-2d8e-47ba-9237-b18798cb5335"
   const api_url = "https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/"
 
@@ -34,10 +38,25 @@ function App() {
         setSecondLoading(false);
       })
   }
+  function findActualGame(id) {
+    setWatchHistory(true);
+    setMatchInfo({});
+    console.log(id);
+    axios.get(`https://la2.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/${id}?api_key=${api_key}`)
+      .then(res => {
+        console.log(res.data);
+        setIsPlaying(true);
+        setMatchInfo(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+        setIsPlaying(false);
+      })
+  }
   if (!user?.name) {
     return (
       <>
-        <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} />
+        <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} findActualGame={findActualGame} />
         <main>
           <FreeChamps api_key={api_key} />
           {secondLoading ? <Loader /> : user.error ? <p style={{
@@ -52,11 +71,15 @@ function App() {
   }
   return (
     <>
-      <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} />
+      <Header api_key={api_key} api_url={api_url} setUser={setUser} findMatches={findMatches} setSecondLoading={setSecondLoading} setLoading={setLoading} findActualGame={findActualGame} />
       <main>
         <FreeChamps api_key={api_key} />
-        <User user={user} api_key={api_key} />
-        {loading ? <Loader /> : <History history={history} user={user} findMatches={findMatches} setLoading={setLoading} />}
+        <User user={user} api_key={api_key} isPlaying={isPlaying} setWatchHistory={setWatchHistory} watchHistory={watchHistory} />
+        {watchHistory
+          ? <>{loading ? <Loader /> : <History history={history} user={user} findMatches={findMatches} setLoading={setLoading} />}</>
+          : <ActualGame matchInfo={matchInfo} />
+        }
+
       </main>
       <Footer />
     </>
