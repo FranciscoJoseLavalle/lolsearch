@@ -6,6 +6,7 @@
     padding: .5rem;
     border-radius: .3rem;
     box-shadow: #000a 0 0 5px;
+    min-width: 17rem;
 }
 
 .actualgame__participant-champ {

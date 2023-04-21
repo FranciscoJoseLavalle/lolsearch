@@ -12,7 +12,6 @@ const Header = ({ api_key, api_url, setUser, findMatches, setSecondLoading, setL
                 setUser(res.data);
                 findMatches(res.data.puuid);
                 findActualGame(res.data.id);
-                console.log(res.data);
                 document.title = `${res.data.name} | LoLSearcher`;
             })
             .catch(err => {

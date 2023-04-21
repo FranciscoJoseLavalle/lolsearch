@@ -17,7 +17,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [matchInfo, setMatchInfo] = useState({});
   const [watchHistory, setWatchHistory] = useState(true);
-  const api_key = "RGAPI-a8723520-8603-4ca2-922b-4941d0dd0d79"
+  const api_key = "RGAPI-ec83c821-6493-404d-84d2-5faca21df553"
   const api_url = "https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/"
 
   function findMatches(puuid, number = 10) {
@@ -41,15 +41,12 @@ function App() {
   function findActualGame(id) {
     setWatchHistory(true);
     setMatchInfo({});
-    console.log(id);
     axios.get(`https://la2.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/${id}?api_key=${api_key}`)
       .then(res => {
-        console.log(res.data);
         setIsPlaying(true);
         setMatchInfo(res.data);
       })
       .catch(err => {
-        console.log(err);
         setIsPlaying(false);
       })
   }

@@ -11,7 +11,7 @@ const HistoryMatch = ({ el, user, summonersID }) => {
             <div className='history__gameinfo'>
                 <p>
                     {el.info.gameMode === "CLASSIC"
-                        && "Grieta del Invocador 5v5"}
+                        && <p>Grieta del Invocador 5v5 | {el.info.queueId === 440 && "Flex"} {el.info.queueId === 420 && "SoloQ"}</p>}
                     {el.info.gameMode === "ARAM"
                         && "Abismo de los Lamentos 5v5"}
                 </p>

@@ -16,7 +16,6 @@ const User = ({ user, api_key, isPlaying, setWatchHistory, watchHistory }) => {
             axios.get(`https://la2.api.riotgames.com/lol/league/v4/entries/by-summoner/${user.id}?api_key=${api_key}`)
                 .then(res => {
                     setUserLeagues(res.data);
-                    console.log(res.data);
                     setLoading(false);
                 })
         }
