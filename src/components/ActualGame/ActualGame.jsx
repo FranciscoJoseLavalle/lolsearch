@@ -17,18 +17,20 @@ const ActualGame = ({ live }) => {
     useEffect(() => {
         setChampsID([]);
         if (matchInfo.participants) {
-            champsArray.forEach(el => {
-                matchInfo.participants.forEach(element => {
-                    if (element.championId == el[1].key) {
-                        setChampsID(test => [...test, { name: el[1].id, key: el[1].key }])
-                    }
+            if (champsID.length === 0 && summonersID.length === 0) {
+                champsArray.forEach(el => {
+                    matchInfo.participants.forEach(element => {
+                        if (element.championId == el[1].key) {
+                            setChampsID(test => [...test, { name: el[1].id, key: el[1].key }])
+                        }
+                    })
                 })
-            })
 
-            setSummonersID([]);
-            summonersArray.forEach(el => {
-                setSummonersID(test => [...test, { id: el[1].id, key: el[1].key }])
-            })
+                setSummonersID([]);
+                summonersArray.forEach(el => {
+                    setSummonersID(test => [...test, { id: el[1].id, key: el[1].key }])
+                })
+            }
         } else {
             findActualGame(user.id)
         }
@@ -37,6 +39,7 @@ const ActualGame = ({ live }) => {
     useEffect(() => {
         if (matchInfo.participants) {
             if (champsID.length === 0 && summonersID.length === 0) {
+                setChampsID([]);
                 champsArray.forEach(el => {
                     matchInfo.participants.forEach(element => {
                         if (element.championId == el[1].key) {
