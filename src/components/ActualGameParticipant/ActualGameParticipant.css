@@ -1,6 +1,6 @@
 .actualgame__participant {
     /* background: linear-gradient(145deg, #334, #223); */
-    color: #eee;
+    color: #ddd;
     display: flex;
     gap: .5rem;
     padding: .5rem;
@@ -15,4 +15,14 @@
 
 .actualgame__participant-spells {
     display: flex;
+}
+
+.actualgame__participant-info {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.actualgame__participant-info a {
+    color: #ddd;
 }

@@ -1,9 +1,11 @@
 import './History.css';
 import summoners from '../../utilities/summoners.json';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import HistoryMatch from '../HistoryMatch/HistoryMatch';
+import { ModalContext } from '../../context/ModalContext';
 
-const History = ({ history, user, findMatches, setLoading }) => {
+const History = ({ user, findMatches }) => {
+    const { history } = useContext(ModalContext);
     const [summonersID, setSummonersID] = useState([])
     let summonersArray = Object.entries(summoners.data);
     useEffect(() => {
@@ -16,7 +18,6 @@ const History = ({ history, user, findMatches, setLoading }) => {
         <div className='history'>
             <select onChange={(e) => {
                 findMatches(user.puuid, e.target.value)
-                setLoading(true);
             }}>
                 <option value="10">Cantidad de partidas</option>
                 <option value="5">5</option>
@@ -25,7 +26,7 @@ const History = ({ history, user, findMatches, setLoading }) => {
                 <option value="50">50</option>
             </select>
             {history.map((el, i) =>
-                <HistoryMatch key={i} el={el} user={user} summonersID={summonersID}/>
+                <HistoryMatch key={i} el={el} user={user} summonersID={summonersID} />
             )}
         </div>
     )

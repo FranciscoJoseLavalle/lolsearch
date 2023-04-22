@@ -2,13 +2,13 @@ import './LeagueIcon.css';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-const LeagueIcon = ({ league }) => {
+const LeagueIcon = ({ league, route }) => {
     switch (league) {
         case 'IRON':
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-iron.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -19,7 +19,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-bronze.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -30,7 +30,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-silver.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -41,7 +41,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-gold.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -52,8 +52,9 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-platinum.png'
-                    alt={`${league} icon`}
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
+                    alt={`${league} icon`
+                    }
                     effect="blur"
                     width={30}
                     height={30}
@@ -63,7 +64,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-diamond.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -74,7 +75,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-master.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -85,7 +86,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-grandmaster.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}
@@ -96,7 +97,7 @@ const LeagueIcon = ({ league }) => {
             return (
                 <LazyLoadImage
                     className='leagueicon'
-                    src='./img/emblem-challenger.png'
+                    src={`${route}/emblem-${league.toLowerCase()}.png`}
                     alt={`${league} icon`}
                     effect="blur"
                     width={30}

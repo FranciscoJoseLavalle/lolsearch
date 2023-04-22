@@ -60,6 +60,9 @@
     align-items: flex-start;
     justify-content: center;
 }
+.participant__summoner a {
+    color: #eee;
+}
 
 @media (max-width: 600px) {
     .participant {

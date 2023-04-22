@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Item from '../Item/Item';
 import './Participant.css';
+import { Link } from 'react-router-dom'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -53,7 +54,7 @@ const Participant = ({ participant, user, summonersID }) => {
                     />
                 </div>
                 <div className='participant__summoner'>
-                    <p>{participant.summonerName}</p>
+                    <Link to={`/user/${participant.summonerName}`}>{participant.summonerName}</Link>
                     <small>Nivel {participant.summonerLevel}</small>
                 </div>
                 <p>{`${participant.kills}/${participant.deaths}/${participant.assists}`}</p>

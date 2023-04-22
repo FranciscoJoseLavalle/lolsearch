@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import './ActualGameParticipant.css';
 import "react-lazy-load-image-component/src/effects/blur.css";
 import axios from 'axios';
 import UserLeague from '../UserLeague/UserLeague'
+import { ModalContext } from '../../context/ModalContext';
+import { Link } from 'react-router-dom'
 
 const ActualGameParticipant = ({ summonersID, participant, champsID }) => {
+    const { api_key } = useContext(ModalContext);
     const [summoners, setSummoners] = useState([]);
     const [leagues, setLeagues] = useState([]);
-    const api_key = "RGAPI-ec83c821-6493-404d-84d2-5faca21df553"
 
     useEffect(() => {
         let array = [];
@@ -69,12 +71,14 @@ const ActualGameParticipant = ({ summonersID, participant, champsID }) => {
                 </div>
             </div>
 
-            <div>
-                {participant.summonerName}
-                {leagues.map(league => (
+            <div className='actualgame__participant-info'>
+                <Link to={`/user/${participant.summonerName}`}>
+                    <p>{participant.summonerName}</p>
+                </Link>
+                {leagues.map((league, i) => (
                     league.queueType === "RANKED_SOLO_5x5"
-                        ? <UserLeague league={league} text={"SoloQ"} />
-                        : <UserLeague league={league} text={"Flex"} />
+                        ? <UserLeague key={i} league={league} text={"SoloQ"} route='../../img' />
+                        : <UserLeague key={i} league={league} text={"Flex"} route='../../img' />
                 ))}
             </div>
         </div>

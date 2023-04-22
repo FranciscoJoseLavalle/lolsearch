@@ -1,13 +1,16 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './User.css';
 import Loader from '../Loader/Loader';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import LeagueIcon from '../LeagueIcon/LeagueIcon';
 import UserLeague from '../UserLeague/UserLeague';
+import { Link } from 'react-router-dom'
+import { ModalContext } from '../../context/ModalContext';
 
-const User = ({ user, api_key, isPlaying, setWatchHistory, watchHistory }) => {
+const User = ({ user, api_key, isPlaying, live }) => {
+    const { watchHistory } = useContext(ModalContext);
     const [userLeagues, setUserLeagues] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -37,14 +40,17 @@ const User = ({ user, api_key, isPlaying, setWatchHistory, watchHistory }) => {
                             <div>
                                 <h3>{user.name}</h3>
                                 <small>Nivel {user.summonerLevel}</small>
-                                {isPlaying && <button className='user__info-watch' onClick={() => setWatchHistory(!watchHistory)}>{watchHistory ? "Ver partida actual" : "Ver historial"}</button>}
+                                {isPlaying
+                                    && <>{live === undefined && <Link className='user__info-watch' to={`/user/${user.name}/live`}>Ver partida actual</Link>}</>}
+                                {live === 'live' && <Link className='user__info-watch' to={`/user/${user.name}`}>Ver historial</Link>}
+
                             </div>
                         </div>
                         <div className="user__leagues">
-                            {userLeagues.map(league => (
+                            {userLeagues.map((league, i) => (
                                 league.queueType === "RANKED_SOLO_5x5"
-                                    ? <UserLeague league={league} text={"SoloQ"} />
-                                    : <UserLeague league={league} text={"Flex"} />
+                                    ? <UserLeague key={i} league={league} text={"SoloQ"} route={live === undefined ? '../img' : live === 'live' && '../../img'} />
+                                    : <UserLeague key={i} league={league} text={"Flex"} route={live === undefined ? '../img' : live === 'live' && '../../img'}  />
                             ))}
                         </div>
                     </div>

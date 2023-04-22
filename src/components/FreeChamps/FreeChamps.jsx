@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import champs from '../../utilities/champs.json';
 import './FreeChamps.css';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { ModalContext } from '../../context/ModalContext';
 
-const FreeChamps = ({ api_key }) => {
+const FreeChamps = () => {
+    const { api_key } = useContext(ModalContext);
     const [freeChamps, setFreeChamps] = useState([]);
     const [champsID, setChampsID] = useState([])
     let champsArray = Object.entries(champs.data);
@@ -14,6 +16,7 @@ const FreeChamps = ({ api_key }) => {
             .then(res => {
                 setFreeChamps(res.data.freeChampionIds)
             })
+            .catch(err => console.log(err))
     }, [])
     useEffect(() => {
         setChampsID([]);

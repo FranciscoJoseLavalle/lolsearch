@@ -37,18 +37,23 @@
     outline: none;
 }
 
-.header__nav-form button {
+.header__nav-form button  {
+    border: none;
+    background-color: transparent;
+}
+.header__nav-form button a {
     padding: .5rem;
     border: none;
     border-top-right-radius: .3rem;
     border-bottom-right-radius: .3rem;
-    background-color: #334;
     color: #eee;
+    background-color: #334;
     text-transform: uppercase;
     font-weight: 600;
     transition: .2s;
 }
-.header__nav-form button:hover {
+
+.header__nav-form button a:hover {
     background-color: #445;
 }
 

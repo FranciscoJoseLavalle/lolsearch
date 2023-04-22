@@ -9,12 +9,10 @@ const HistoryMatch = ({ el, user, summonersID }) => {
     return (
         <div>
             <div className='history__gameinfo'>
-                <p>
-                    {el.info.gameMode === "CLASSIC"
-                        && <p>Grieta del Invocador 5v5 | {el.info.queueId === 440 && "Flex"} {el.info.queueId === 420 && "SoloQ"}</p>}
-                    {el.info.gameMode === "ARAM"
-                        && "Abismo de los Lamentos 5v5"}
-                </p>
+                {el.info.gameMode === "CLASSIC"
+                    && <p>Grieta del Invocador 5v5 {el.info.queueId === 440 && "| Flex"} {el.info.queueId === 420 && "| SoloQ"}</p>}
+                {el.info.gameMode === "ARAM"
+                    && <p>Abismo de los Lamentos 5v5</p>}
                 <small>{moment(el.info.gameEndTimestamp).fromNow()}</small>
                 <small>
                     {Math.trunc((el.info.gameDuration / 60))} minutos {el.info.gameDuration % 60} segundos
