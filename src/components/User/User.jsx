@@ -8,6 +8,7 @@ import LeagueIcon from '../LeagueIcon/LeagueIcon';
 import UserLeague from '../UserLeague/UserLeague';
 import { Link } from 'react-router-dom'
 import { ModalContext } from '../../context/ModalContext';
+import UserBestChamps from '../UserBestChamps/UserBestChamps';
 
 const User = ({ user, api_key, isPlaying, live }) => {
     const { watchHistory } = useContext(ModalContext);
@@ -50,9 +51,10 @@ const User = ({ user, api_key, isPlaying, live }) => {
                             {userLeagues.map((league, i) => (
                                 league.queueType === "RANKED_SOLO_5x5"
                                     ? <UserLeague key={i} league={league} text={"SoloQ"} route={live === undefined ? '../img' : live === 'live' && '../../img'} />
-                                    : <UserLeague key={i} league={league} text={"Flex"} route={live === undefined ? '../img' : live === 'live' && '../../img'}  />
+                                    : <UserLeague key={i} league={league} text={"Flex"} route={live === undefined ? '../img' : live === 'live' && '../../img'} />
                             ))}
                         </div>
+                        <UserBestChamps />
                     </div>
             }
         </>

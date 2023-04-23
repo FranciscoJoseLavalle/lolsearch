@@ -7,6 +7,7 @@ function ModalContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [isPlaying, setIsPlaying] = useState(false);
   const [history, setHistory] = useState([]);
+  const [bestChamps, setBestChamps] = useState([]);
   const [matchInfo, setMatchInfo] = useState({});
   const [watchHistory, setWatchHistory] = useState(true);
 
@@ -16,8 +17,11 @@ function ModalContextProvider({ children }) {
     axios.get(`https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${userName}?api_key=${api_key}`)
       .then(res => {
         setUser(res.data);
+        console.log(res.data);
         findMatches(res.data.puuid);
         findActualGame(res.data.id);
+        findBestChamps(res.data.id);
+        // findClashGame(res.data.id);
         document.title = `${res.data.name} | LoLSearcher`;
       })
       .catch(err => {
@@ -52,9 +56,29 @@ function ModalContextProvider({ children }) {
         setIsPlaying(false);
       })
   }
+  function findBestChamps(id) {
+    axios.get(`https://la2.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}/top?count=3&api_key=${api_key}`)
+      .then(res => {
+        setBestChamps(res.data);
+        console.log(res.data);
+      })
+  }
+  // function findClashGame(id) {
+  //   setWatchHistory(true);
+  //   setMatchInfo({});
+  //   axios.get(`https://la2.api.riotgames.com/lol/clash/v1/players/by-summoner/${id}?api_key=${api_key}`)
+  //     .then(res => {
+  //       console.log(res.data);
+  //       setIsPlaying(true);
+  //       setMatchInfo(res.data);
+  //     })
+  //     .catch(err => {
+  //       setIsPlaying(false);
+  //     })
+  // }
 
   return (
-    <ModalContext.Provider value={{ user, setUser, api_key, findMatches, findActualGame, isPlaying, history, matchInfo, watchHistory, setWatchHistory, searchPlayer }}>
+    <ModalContext.Provider value={{ user, setUser, api_key, findMatches, findActualGame, isPlaying, history, matchInfo, watchHistory, setWatchHistory, searchPlayer, bestChamps }}>
       {children}
     </ModalContext.Provider>
   )
