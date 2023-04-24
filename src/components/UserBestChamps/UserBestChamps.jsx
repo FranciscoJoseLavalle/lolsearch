@@ -22,8 +22,6 @@ const UserBestChamps = () => {
             })
         })
     }, [bestChamps])
-    console.log(champsID);
-    console.log(bestChamps);
     return (
         <div className='bestChamps'>
             {champsID.map((champ, i) =>
@@ -38,6 +36,7 @@ const UserBestChamps = () => {
                     />
                     <small className='bestChamp__level'>{champ.level}</small>
                     <small>{champ.points}</small>
+                    {/* <small>{(champ.points).toString().length > 3 ? `${(champ.points).toString()[0]}${(champ.points).toString()[1]}${(champ.points).toString()[3]}k` : champ.points}</small> */}
                 </div>
             )}
         </div>

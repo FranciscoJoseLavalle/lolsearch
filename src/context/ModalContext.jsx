@@ -11,7 +11,7 @@ function ModalContextProvider({ children }) {
   const [matchInfo, setMatchInfo] = useState({});
   const [watchHistory, setWatchHistory] = useState(true);
 
-  const api_key = "RGAPI-00265329-a7e2-454b-8b7d-e97c52d994a6"
+  const api_key = "RGAPI-58816ae7-cb7b-4b03-b910-9c21363e9f6f"
 
   function searchPlayer(userName) {
     axios.get(`https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${userName}?api_key=${api_key}`)
