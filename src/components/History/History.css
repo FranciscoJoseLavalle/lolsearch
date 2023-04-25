@@ -18,7 +18,31 @@
     margin-bottom: -1rem;
 }
 
-.history>div {
+.history__filter {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.history__filter button {
+    flex-grow: 1;
+    padding: .5rem;
+    border-radius: .3rem;
+    outline: none;
+    border: none;
+    background: linear-gradient(145deg, #334, #223);
+    background-position: 0 0;
+    background-color: #334;
+    color: #eee;
+    margin-bottom: -1rem;
+    transition: .2s;
+}
+
+.history__filter button:hover {
+    opacity: .8;
+}
+
+.history .history__gameinfo-container {
     display: flex;
     flex-direction: column;
     /* border-radius: 5rem; */
@@ -46,9 +70,9 @@
 }
 
 @media (max-width: 370px) {
-    .history {
+    /* .history {
         width: 100%;
-    }
+    } */
 
     .history>div {
         padding: 0;

@@ -8,7 +8,7 @@ import 'moment/locale/es';
 const HistoryMatch = ({ el, user, summonersID }) => {
     const [showSummoners, setShowSummoners] = useState(false);
     return (
-        <div>
+        <div className='history__gameinfo-container'>
             <div className='history__gameinfo'>
                 {el.info.gameMode === "CLASSIC"
                     && <p>Grieta del Invocador 5v5 {el.info.queueId === 440 && "| Flex"} {el.info.queueId === 420 && "| SoloQ"}</p>}

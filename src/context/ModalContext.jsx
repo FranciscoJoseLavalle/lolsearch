@@ -10,6 +10,8 @@ function ModalContextProvider({ children }) {
   const [bestChamps, setBestChamps] = useState([]);
   const [matchInfo, setMatchInfo] = useState({});
   const [watchHistory, setWatchHistory] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [historyLoading, setHistoryLoading] = useState(true);
 
   const api_key = "RGAPI-58816ae7-cb7b-4b03-b910-9c21363e9f6f"
 
@@ -20,6 +22,7 @@ function ModalContextProvider({ children }) {
         findMatches(res.data.puuid);
         findActualGame(res.data.id);
         findBestChamps(res.data.id);
+        setHistoryLoading(true);
         // findClashGame(res.data.id);
         document.title = `${res.data.name} | LoLSearcher`;
       })
@@ -41,6 +44,7 @@ function ModalContextProvider({ children }) {
     axios.get(`https://americas.api.riotgames.com/lol/match/v5/matches/${matchID}?api_key=${api_key}`)
       .then(res => {
         setHistory(el => [...el, res.data])
+        setHistoryLoading(false);
       })
   }
   function findActualGame(id) {
@@ -76,7 +80,7 @@ function ModalContextProvider({ children }) {
   // }
 
   return (
-    <ModalContext.Provider value={{ user, setUser, api_key, findMatches, findActualGame, isPlaying, history, matchInfo, watchHistory, setWatchHistory, searchPlayer, bestChamps }}>
+    <ModalContext.Provider value={{ user, setUser, api_key, findMatches, findActualGame, isPlaying, history, matchInfo, watchHistory, setWatchHistory, searchPlayer, bestChamps, loading, setLoading, historyLoading }}>
       {children}
     </ModalContext.Provider>
   )

@@ -11,9 +11,8 @@ import { ModalContext } from '../../context/ModalContext';
 import UserBestChamps from '../UserBestChamps/UserBestChamps';
 
 const User = ({ user, api_key, isPlaying, live }) => {
-    const { watchHistory } = useContext(ModalContext);
+    const { watchHistory, loading, setLoading } = useContext(ModalContext);
     const [userLeagues, setUserLeagues] = useState([])
-    const [loading, setLoading] = useState(true);
     useEffect(() => {
         setLoading(true);
         if (user?.id) {

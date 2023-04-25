@@ -5,7 +5,6 @@ import { ModalContext } from '../../context/ModalContext';
 import './Header.css'
 
 const Header = () => {
-    const { setUser, api_key, findActualGame, findMatches } = useContext(ModalContext);
     const [userName, setUserName] = useState('');
     return (
         <header className='header'>
