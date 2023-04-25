@@ -25,7 +25,7 @@ const UserBestChamps = () => {
     return (
         <div className='bestChamps'>
             {champsID.map((champ, i) =>
-                <div className='bestChamp'>
+                <div className='bestChamp' key={i}>
                     <LazyLoadImage
                         key={i}
                         src={`http://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${champ.id}.png`}
@@ -35,7 +35,8 @@ const UserBestChamps = () => {
                         height={40}
                     />
                     <small className='bestChamp__level'>{champ.level}</small>
-                    <small>{champ.points}</small>
+                    {/* <small>{champ.points}</small> */}
+                    <small>{Math.round(champ.points / 100) / 10}k</small>
                     {/* <small>{(champ.points).toString().length > 3 ? `${(champ.points).toString()[0]}${(champ.points).toString()[1]}${(champ.points).toString()[3]}k` : champ.points}</small> */}
                 </div>
             )}

@@ -17,7 +17,6 @@ function ModalContextProvider({ children }) {
     axios.get(`https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${userName}?api_key=${api_key}`)
       .then(res => {
         setUser(res.data);
-        console.log(res.data);
         findMatches(res.data.puuid);
         findActualGame(res.data.id);
         findBestChamps(res.data.id);
@@ -60,7 +59,6 @@ function ModalContextProvider({ children }) {
     axios.get(`https://la2.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}/top?count=3&api_key=${api_key}`)
       .then(res => {
         setBestChamps(res.data);
-        console.log(res.data);
       })
   }
   // function findClashGame(id) {
