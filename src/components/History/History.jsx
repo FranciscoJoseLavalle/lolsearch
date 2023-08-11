@@ -38,11 +38,11 @@ const History = ({ user, findMatches }) => {
                 <button onClick={() => setHistoryFilter(440)}>Flex</button>
             </div>
             {history.map((el, i) => (
-                <>
+                <div key={i}>
                     {historyFilter === 'todos'
-                        && <HistoryMatch key={i} el={el} user={user} summonersID={summonersID} />}
-                    {el.info.queueId === historyFilter && <HistoryMatch key={i} el={el} user={user} summonersID={summonersID} />}
-                </>
+                        && <HistoryMatch el={el} user={user} summonersID={summonersID} />}
+                    {el.info.queueId === historyFilter && <HistoryMatch el={el} user={user} summonersID={summonersID} />}
+                </div>
             )
             )}
         </div>

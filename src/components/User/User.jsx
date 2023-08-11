@@ -11,7 +11,7 @@ import { ModalContext } from '../../context/ModalContext';
 import UserBestChamps from '../UserBestChamps/UserBestChamps';
 
 const User = ({ user, api_key, isPlaying, live }) => {
-    const { watchHistory, loading, setLoading } = useContext(ModalContext);
+    const { watchHistory, loading, setLoading, allChampsMastery } = useContext(ModalContext);
     const [userLeagues, setUserLeagues] = useState([])
     useEffect(() => {
         setLoading(true);
@@ -54,6 +54,7 @@ const User = ({ user, api_key, isPlaying, live }) => {
                             ))}
                         </div>
                         <UserBestChamps />
+                        <small>Maestría total: {allChampsMastery}</small>
                     </div>
             }
         </>

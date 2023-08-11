@@ -8,12 +8,13 @@ function ModalContextProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [history, setHistory] = useState([]);
   const [bestChamps, setBestChamps] = useState([]);
+  const [allChampsMastery, setAllChampsMastery] = useState('');
   const [matchInfo, setMatchInfo] = useState({});
   const [watchHistory, setWatchHistory] = useState(true);
   const [loading, setLoading] = useState(true);
   const [historyLoading, setHistoryLoading] = useState(true);
 
-  const api_key = "RGAPI-6652303b-4514-4d09-a341-ce6534e71fa0"
+  const api_key = "RGAPI-90234729-20f4-4a03-863a-62f020fa3d01"
 
   function searchPlayer(userName) {
     axios.get(`https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${userName}?api_key=${api_key}`)
@@ -22,6 +23,7 @@ function ModalContextProvider({ children }) {
         findMatches(res.data.puuid);
         findActualGame(res.data.id);
         findBestChamps(res.data.id);
+        findAllChampsMastery(res.data.id);
         setHistoryLoading(true);
         // findClashGame(res.data.id);
         document.title = `${res.data.name} | LoLSearcher`;
@@ -65,6 +67,26 @@ function ModalContextProvider({ children }) {
         setBestChamps(res.data);
       })
   }
+  function findBestChamps(id) {
+    axios.get(`https://la2.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}/top?count=3&api_key=${api_key}`)
+      .then(res => {
+        setBestChamps(res.data);
+      })
+  }
+  function findAllChampsMastery(id) {
+    axios.get(`https://la2.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${api_key}`)
+      .then(res => {
+        let contador = 0;
+        res.data.forEach(el => {
+          contador += el.championPoints
+        })
+        console.log(contador);
+        setAllChampsMastery(contador);
+      })
+      .catch(err => {
+        console.log({error: err});
+      })
+  }
   // function findClashGame(id) {
   //   setWatchHistory(true);
   //   setMatchInfo({});
@@ -80,7 +102,7 @@ function ModalContextProvider({ children }) {
   // }
 
   return (
-    <ModalContext.Provider value={{ user, setUser, api_key, findMatches, findActualGame, isPlaying, history, matchInfo, watchHistory, setWatchHistory, searchPlayer, bestChamps, loading, setLoading, historyLoading }}>
+    <ModalContext.Provider value={{ user, setUser, api_key, findMatches, findActualGame, isPlaying, history, matchInfo, watchHistory, setWatchHistory, searchPlayer, bestChamps, loading, setLoading, historyLoading, allChampsMastery }}>
       {children}
     </ModalContext.Provider>
   )
